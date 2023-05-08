@@ -3,7 +3,7 @@ import Item from "../Model/Item";
 import Culture from '../Model/Culture'
 const date = require("date-and-time");
 const CultureController = {
-  async itemsCulture(req, res, next) {
+  async itemsCulture(req,  res, next) {
     let item; 
     try {
       item = await Culture.find().sort({_id:-1});;
@@ -25,8 +25,8 @@ const CultureController = {
     try {
       pre = await Culture.find({
         name: req.body.name,
-       sampleType: req.body.sampleType,
-        $and:[{createdAt:{$gte:d1}},{createdAt:{$lte:d2}}]})
+        RequiredAnalysis: req.body.RequiredAnalysis,
+        $and:[{date:{$gte:d1}},{date:{$lte:d2}}]})
      
     } catch (error) {
       return next(error);
@@ -38,19 +38,19 @@ const CultureController = {
   },
 
   async addCulture(req, res, next) {
-    const productsSchema = Joi.object({
-      name: Joi.string().required(),
-      workOder: Joi.string().required(),
-      noofSample: Joi.string().required(),
-      sampleType: Joi.string().required(),
-      date: Joi.date().required(),
-      RequiredAnalysis:Joi.string().required(),
-      count:  Joi.required(),
-    });
-    const { error } = productsSchema.validate(req.body);
-    if (error) {
-      return next(error);
-    }
+    // const productsSchema = Joi.object({
+    //   name: Joi.string().required(),
+    //   workOder: Joi.string().required(),
+    //   noofSample: Joi.string().required(),
+    //   sampleType: Joi.string().required(),
+    //   date: Joi.date().required(),
+    //   RequiredAnalysis:Joi.string().required(),
+    //   count:  Joi.required(),
+    // });
+    // const { error } = productsSchema.validate(req.body);
+    // if (error) {
+    //   return next(error);
+    // }
     const { name, workOder, noofSample, requiredTest, sampleType, date ,RequiredAnalysis,count} =
       req.body;
 
