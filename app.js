@@ -9,8 +9,8 @@ const PORT= 3002
 
 
 
-// mongoose.connect('mongodb+srv://admin:admin@test-inventory.5rzqf4o.mongodb.net/?retryWrites=true&w=majority',(error)=>{
-mongoose.connect('mongodb://localhost:27017/Lab',(error)=>{
+mongoose.connect('mongodb+srv://admin:admin@test-inventory.5rzqf4o.mongodb.net/?retryWrites=true&w=majority',(error)=>{
+// mongoose.connect('mongodb://localhost:27017/Lab',(error)=>{
 if(error){
 
     console.log(error)

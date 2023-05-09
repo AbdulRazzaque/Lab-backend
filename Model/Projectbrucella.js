@@ -9,7 +9,10 @@ const ProjectbrucellaSchema= new Schema({
     sampleType:{type:String,require:true},
     date:{type:Date,require:true},
     RequiredAnalysis:{type:String,require:true},
-    count:{type:Number,require:true}
+    Lab: { type: String, default: 'Main Lab' },
+    count:{type:Number,require:true},
+    Lab: { type: String, default: 'Project Lab' }
+    
     },{timestamps:true})
 
 export default mongoose.model('Projectbrucella',ProjectbrucellaSchema,'Projectbrucellas')

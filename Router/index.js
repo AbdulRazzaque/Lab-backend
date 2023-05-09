@@ -9,6 +9,7 @@ import registerController from "../Controller/registerController";
 import ParasitesController from "../Controller/ParasitesController";
 import HPLCController from "../Controller/HPLCController";
 import MainController from "../Controller/MainController";
+import AllStock from "../Controller/AllStockController";
 const Router = express.Router();
 //--------------Login and Registration-------------------------//
 Router.post("/register", registerController.register);
@@ -78,7 +79,7 @@ Router.post("/getPrevStockHPLC",HPLCController.getPrevStockHPLC)
 Router.post("/getPrevStockMain",MainController.getPrevStockMain)
 
 
-
+Router.post("/allPreveStock",AllStock.all)
 
 
 
