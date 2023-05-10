@@ -7,9 +7,10 @@ const cors = require('cors')
 const app= express()
 const PORT= 3002
 
+// mongodb+srv://tharb221:<password>@cluster0.z8rlqdf.mongodb.net/?retryWrites=true&w=majority
 
-
-mongoose.connect('mongodb+srv://admin:admin@test-inventory.5rzqf4o.mongodb.net/?retryWrites=true&w=majority',(error)=>{
+mongoose.connect('mongodb+srv://tharb221:e181740e@cluster0.z8rlqdf.mongodb.net/?retryWrites=true&w=majority',(error)=>{
+// mongoose.connect('mongodb+srv://admin:admin@test-inventory.5rzqf4o.mongodb.net/?retryWrites=true&w=majority',(error)=>{
 // mongoose.connect('mongodb://localhost:27017/Lab',(error)=>{
 if(error){
 
