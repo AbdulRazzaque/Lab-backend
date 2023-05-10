@@ -2,7 +2,7 @@ import Culture from '../Model/Culture'
 import Main from '../Model/Main'
 const date = require("date-and-time"); 
 const MongoClient = require('mongodb').MongoClient;
-
+ 
 const url = 'mongodb+srv://admin:admin@test-inventory.5rzqf4o.mongodb.net/?retryWrites=true&w=majority';
 const dbName = 'test';
 const AllStock={
