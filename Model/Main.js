@@ -9,8 +9,7 @@ const MainSchema= new Schema({
     sampleType:{type:String,require:true},
     date:{type:Date,require:true},
     RequiredAnalysis:{type:String,require:true},
-    count:{type:String},
-    Lab: { type: String, default: 'Main Lab' }
+    count:{type:String,},
     // excel:[]
     // count1:{type:String,require:true}
 },{timestamps:true})

@@ -10,7 +10,6 @@ const HPLCSchema= new Schema({
     date:{type:Date,require:true},
     RequiredAnalysis:{type:String,require:true},
     count:{type:String,require:true},
-    Lab: { type: String, default: 'HPLC Lab' }
     // count1:{type:String,require:true}
 },{timestamps:true})
 

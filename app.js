@@ -5,13 +5,12 @@ import Router from './Router'
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const app= express()
-const PORT= 3002
+const PORT= 3005
 
-// mongodb+srv://tharb221:<password>@cluster0.z8rlqdf.mongodb.net/?retryWrites=true&w=majority
 
 mongoose.connect('mongodb+srv://tharb221:e181740e@cluster0.z8rlqdf.mongodb.net/?retryWrites=true&w=majority',(error)=>{
-// mongoose.connect('mongodb+srv://admin:admin@test-inventory.5rzqf4o.mongodb.net/?retryWrites=true&w=majority',(error)=>{
-// mongoose.connect('mongodb://localhost:27017/Lab',(error)=>{
+
+// mongoose.connect('mongodb://admin:admin@ac-endetpj-shard-00-00.5rzqf4o.mongodb.net:27017,ac-endetpj-shard-00-01.5rzqf4o.mongodb.net:27017,ac-endetpj-shard-00-02.5rzqf4o.mongodb.net:27017/?ssl=true&replicaSet=atlas-5zbco1-shard-0&authSource=admin&retryWrites=true&w=majority',(error)=>{
 if(error){
 
     console.log(error)
@@ -33,6 +32,6 @@ app.use(errorhandller)
 
 
 app.listen(PORT,()=>{
-    console.log('App Running On 3002')
+    console.log('App Running On 3005')
 
 })

@@ -61,7 +61,7 @@ Router.put("/updateHPLC/:id", HPLCController.updateHPLC);
 Router.delete("/deleteHPLC/:id", HPLCController.deleteHPLC);
 
 
-
+ 
 // //--------------Main Lab-------------------------//
 Router.get("/itemsMain", MainController.itemsMain);
 Router.post("/addMain", MainController.addMain);
@@ -79,8 +79,8 @@ Router.post("/getPrevStockHPLC",HPLCController.getPrevStockHPLC)
 Router.post("/getPrevStockMain",MainController.getPrevStockMain)
 
 
-Router.post("/allPreveStock",AllStock.all)
 
+Router.post("/allPreveStock",AllStock.all)
 
 
 

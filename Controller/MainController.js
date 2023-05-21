@@ -19,20 +19,22 @@ const MainController = {
   async getPrevStockMain(req, res) {
     let pre;
    
-    let d1 = date.parse(req.body.from, "YYYY/MM/DD");
-    let d2 = date.parse(req.body.to, "YYYY/MM/DD");
-   
+    // let d1 = date.parse(req.body.from, "YYYY/MM/DD");
+    // let d2 = date.parse(req.body.to, "YYYY/MM/DD");
+   var db
     try {
-      pre = await Main.find({
+      pre = await db.test.find({
         name: req.body.name,
-        RequiredAnalysis: req.body.RequiredAnalysis,
+        // RequiredAnalysis: req.body.RequiredAnalysis,
        
-        $and:[{date:{$gte:d1}},{date:{$lte:d2}}]})
+        // $and:[{date:{$gte:d1}},{date:{$lte:d2}}]
+      })
      
     } catch (error) {
-      return next(error);
+      // return next(error);
+      console.log(error)
     }
-    // res.json(pre)
+     res.json(pre)
     res.status(200).send({ msg: "success", pre });
     console.log(pre);
     

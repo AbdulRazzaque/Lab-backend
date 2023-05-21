@@ -11,7 +11,7 @@ const PcrSchema= new Schema({
     date:{type:Date,require:true},
     RequiredAnalysis:{type:String,require:true},
     count:{type:String,require:true},
-    Lab: { type: String, default: 'Pcr Lab' }
+    // count1:{type:String,require:true}
 },{timestamps:true})
 
 export default mongoose.model('Pcr',PcrSchema,'Pcrs')
