@@ -1,29 +1,28 @@
-import { valid } from "joi"
-//  import CustomError from "./customError.js"
-import CustomError from "./CustomError"
+const Joi = require("joi");
+const CustomError = require("./CustomError");
 
+const errorhandller = (error, req, res, next) => {
+  let statusCode = 400;
+  let data = {
+    message: "Internal Server Error",
+    originalError: error.message,
+  };
 
+  if (error instanceof Joi.ValidationError) {
+    statusCode = 422; // Unprocessable Entity
+    data = {
+      message: error.message,
+    };
+  }
 
-const errorhandller=(error,req,res,next)=>{
-    let statusCode =400
-    const data={
-     message:"Internel Server Error",
-     orignalError:error.message
-    }
+  if (error instanceof CustomError) {
+    statusCode = error.status;
+    data = {
+      message: error.message,
+    };
+  }
 
+  res.status(statusCode).json(data);
+};
 
- if(error instanceof valid){
-    statusCode
-    data={
-   message:error.message     
-    }
- }
- if(error instanceof CustomError){
-    res.status(error.status).json({message:error.message})
- }
-
- res.status(statusCode).json(data)
-
-
-}
-export default errorhandller
+module.exports = errorhandller;

@@ -1,18 +1,13 @@
-import  Jwt  from "jsonwebtoken"
+const Jwt = require("jsonwebtoken");
 
+class jsonwebservise {
+  static sign(payload, expiry = "1d", secret = "12334455y") {
+    return Jwt.sign(payload, secret, { expiresIn: expiry });
+  }
 
-class jsonwebservise{
-static sign(pyload, expiry='1d' ,secret='12334455y',){
-  return  Jwt.sign(pyload,secret, {expiresIn:expiry})
+  static verify(token, secret = "12334455y") {
+    return Jwt.verify(token, secret);
+  }
 }
 
-
-
-static verify(token,secret='12334455y',){
-  return Jwt.verify(token,secret,)
-}
-
-}
-
-
-export default jsonwebservise
+module.exports = jsonwebservise;

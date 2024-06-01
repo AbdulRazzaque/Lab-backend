@@ -1,57 +1,42 @@
-import Joi from "joi"
+const Joi = require("joi");
+const Item = require("../Model/Item");
+const bcrypt = require('bcrypt');
+const jsonwebservise = require("../error/jsonwebtoken");
 
-import Item from "../Model/Item";
-import bcrypt from 'bcrypt'
-import jsonwebservise from "../error/jsonwebtoken"
+const loginController = {
 
-const loginController={
-   
+  async login(req, res, next) {
 
-async login(req,res,next){
+    const loginSchema = Joi.object({
+      email: Joi.string().required(),
+      password: Joi.string().required(),
+    });
 
-    const loginSchma =Joi.object({
-        email:Joi.string().required(),
-                 password:Joi.string().required(),
-    })
-
-
-    const {error}= loginSchma.validate(req.body)
+    const { error } = loginSchema.validate(req.body);
     if (error) {
       return next(error);
     }
 
-// chek pass and email im the database....
+    // Check email and password in the database
+    try {
+      const user = await Item.findOne({ email: req.body.email });
+      if (!user) {
+        return next(new Error('User not found'));
+      }
+      
+      const passwordValid = await bcrypt.compare(req.body.password, user.password);
+      if (!passwordValid) {
+        return next(new Error('Password is incorrect'));
+      }
 
-try{  
+      const access_jwt_token = jsonwebservise.sign({ id: user._id });
+      res.json({ access_jwt_token });
 
-  const user= await  Item.findOne({email:req.body.email});
-  if(!user){
-    return next(new Error('User not Found'))
+    } catch (err) {
+      return next(err);
+    }
 
   }
-  const password = await bcrypt.compare(req.body.password,user.password)
-  if(!password){
-    return next(new Error('Password not Found'))
+};
 
-  }
-
-  let access_jwt_token = jsonwebservise.sign({id:user._id})
-
-
-
-  res.json({access_jwt_token})
-
-}catch(err){
-    return next(err)
-
-}
-  
-
-
-}
-
-
-
-
-}
-export default loginController
+module.exports = loginController;

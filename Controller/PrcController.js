@@ -1,11 +1,11 @@
-import Joi from "joi";
-
-import Prc from '../Model/Pcr'
+const Joi = require("joi");
+const Prc = require('../Model/Pcr');
 const date = require("date-and-time");
+
 const PrcController = {
   async itemsPrc(req, res, next) {
     let item;
-    try { 
+    try {
       item = await Prc.find().sort({_id:-1});
       if (!item) {
         return next(new Error("items not found!"));
@@ -129,4 +129,5 @@ console.log(req.params.id,'id')
     res.json(product);
   },
 };
-export default PrcController;
+
+module.exports = PrcController;

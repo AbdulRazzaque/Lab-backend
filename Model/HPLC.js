@@ -1,16 +1,17 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-const Schema=mongoose.Schema;
-const HPLCSchema= new Schema({
-    name:{type:String,require:true},
-    workOder:{type:String,require:true},
-    noofSample:{type:String,require:true},
-    requiredTest:{type:String,require:true},
-    sampleType:{type:String,require:true},
-    date:{type:Date,require:true},
-    RequiredAnalysis:{type:String,require:true},
-    count:{type:String,require:true},
-    // count1:{type:String,require:true}
-},{timestamps:true})
 
-export default mongoose.model('HPLC',HPLCSchema,'HPLCS')
+const Schema = mongoose.Schema;
+const HPLCSchema = new Schema({
+    name: { type: String, required: true },
+    workOder: { type: String, required: true },
+    noofSample: { type: String, required: true },
+    requiredTest: { type: String, required: true },
+    sampleType: { type: String, required: true },
+    date: { type: Date, required: true },
+    RequiredAnalysis: { type: String, required: true },
+    count: { type: String, required: true },
+    // count1: { type: String, required: true }
+}, { timestamps: true });
+
+module.exports = mongoose.model('HPLC', HPLCSchema, 'HPLCS');

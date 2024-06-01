@@ -1,14 +1,11 @@
-import Joi from "joi";
-
-import bcrypt from "bcrypt";
-import Item from "../Model/Item";
-import jsonwebservise from "../error/jsonwebtoken";
-
+const Joi = require("joi");
+const bcrypt = require("bcrypt");
+const Item = require("../Model/Item");
+const jsonwebservise = require("../error/jsonwebtoken");
 
 const registerController = {
   async register(req, res, next) {
     const registerSchema = Joi.object({
-     
       email: Joi.string().required(),
       password: Joi.string().required(),
       reppassword: Joi.ref("password"),
@@ -20,10 +17,8 @@ const registerController = {
     }
 
     // User Already Exist....
-
     try {
       const exist = await Item.exists({ email: req.body.email });
-
       if (exist) {
         return next(new Error("User Already Exist."));
       }
@@ -33,21 +28,16 @@ const registerController = {
 
     // bcrypt password...
     const { email, password } = req.body;
-
     const hasdPassword = await bcrypt.hash(password, 10);
-
     let user = new Item({
-     
       email,
       password: hasdPassword,
     });
 
     // save code......
     let access_jwt_token;
-
     try {
       user = await user.save();
-
       access_jwt_token = jsonwebservise.sign({ _id: user._id });
     } catch (error) {
       console.log(error);
@@ -57,4 +47,5 @@ const registerController = {
     res.json({ access_jwt_token });
   },
 };
-export default registerController;
+
+module.exports = registerController;

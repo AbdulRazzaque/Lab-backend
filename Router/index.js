@@ -1,20 +1,20 @@
-import express from "express";
-import CultureController from "../Controller/CultureController";
-import DnaController from "../Controller/DnaController";
-import itemController from "../Controller/itemController";
-import loginController from "../Controller/loginController";
-import PrcController from "../Controller/PrcController";
-import ProjectbrucellaController from "../Controller/ProjectbrucellaController";
-import registerController from "../Controller/registerController";
-import ParasitesController from "../Controller/ParasitesController";
-import HPLCController from "../Controller/HPLCController";
-import MainController from "../Controller/MainController";
-import AllStock from "../Controller/AllStockController";
+const express = require("express");
+const CultureController = require("../Controller/CultureController");
+const DnaController = require("../Controller/DnaController");
+const itemController = require("../Controller/itemController");
+const loginController = require("../Controller/loginController");
+const PrcController = require("../Controller/PrcController");
+const ProjectbrucellaController = require("../Controller/ProjectbrucellaController");
+const registerController = require("../Controller/registerController");
+const ParasitesController = require("../Controller/ParasitesController");
+const HPLCController = require("../Controller/HPLCController");
+const MainController = require("../Controller/MainController");
+const AllStock = require("../Controller/AllStockController");
 const Router = express.Router();
+
 //--------------Login and Registration-------------------------//
 Router.post("/register", registerController.register);
-Router.post("/login",loginController.login)
-
+Router.post("/login", loginController.login);
 
 //--------------Hospitalbrucella-------------------------//
 Router.get("/item", itemController.items);
@@ -46,8 +46,6 @@ Router.post("/addDna", DnaController.addDna);
 Router.put("/updateDna/:id", DnaController.updateDna);
 Router.delete("/deleteDna/:id", DnaController.deleteDna);
 
-
-
 // //--------------Parasites-------------------------//
 Router.get("/itemsParasites", ParasitesController.itemsParasites);
 Router.post("/addParasites", ParasitesController.addParasites);
@@ -60,8 +58,6 @@ Router.post("/addHPLC", HPLCController.addHPLC);
 Router.put("/updateHPLC/:id", HPLCController.updateHPLC);
 Router.delete("/deleteHPLC/:id", HPLCController.deleteHPLC);
 
-
- 
 // //--------------Main Lab-------------------------//
 Router.get("/itemsMain", MainController.itemsMain);
 Router.post("/addMain", MainController.addMain);
@@ -69,21 +65,15 @@ Router.put("/updateMain/:id", MainController.updateMain);
 Router.delete("/deleteMain/:id", MainController.deleteMain);
 
 //==============previus Report-----------------
-Router.post("/getPrevStockInInfo",itemController.getPrevStockInInfo)
-Router.post("/getPrevProjectbrucella",ProjectbrucellaController.getPrevProjectbrucella)
-Router.post("/getPrevProjectPcr",PrcController.getPrevProjectPcr)
-Router.post("/getPrevStockDna",DnaController.getPrevStockDna)
-Router.post("/getPrevStockCulture",CultureController.getPrevStockCulture)
-Router.post("/getPrevStockParasites",ParasitesController.getPrevStockParasites)
-Router.post("/getPrevStockHPLC",HPLCController.getPrevStockHPLC)
-Router.post("/getPrevStockMain",MainController.getPrevStockMain)
+Router.post("/getPrevStockInInfo", itemController.getPrevStockInInfo);
+Router.post("/getPrevProjectbrucella", ProjectbrucellaController.getPrevProjectbrucella);
+Router.post("/getPrevProjectPcr", PrcController.getPrevProjectPcr);
+Router.post("/getPrevStockDna", DnaController.getPrevStockDna);
+Router.post("/getPrevStockCulture", CultureController.getPrevStockCulture);
+Router.post("/getPrevStockParasites", ParasitesController.getPrevStockParasites);
+Router.post("/getPrevStockHPLC", HPLCController.getPrevStockHPLC);
+Router.post("/getPrevStockMain", MainController.getPrevStockMain);
 
+Router.post("/allPreveStock", AllStock.all);
 
-
-Router.post("/allPreveStock",AllStock.all)
-
-
-
-
-
-export default Router;
+module.exports = Router;

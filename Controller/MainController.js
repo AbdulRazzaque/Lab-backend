@@ -1,12 +1,12 @@
-import Joi from "joi";
+const Joi = require("joi");
+const Main = require("../Model/Main");
+const date = require("date-and-time");
 
-import Main from '../Model/Main'
-const date = require("date-and-time"); 
 const MainController = {
   async itemsMain(req, res, next) {
     let item;
     try {
-      item = await Main.find().sort({_id:-1});;
+      item = await Main.find().sort({ _id: -1 });
       if (!item) {
         return next(new Error("items not found!"));
       }
@@ -18,26 +18,22 @@ const MainController = {
 
   async getPrevStockMain(req, res) {
     let pre;
-   
     // let d1 = date.parse(req.body.from, "YYYY/MM/DD");
     // let d2 = date.parse(req.body.to, "YYYY/MM/DD");
-   var db
+    let db;
     try {
       pre = await db.test.find({
         name: req.body.name,
         // RequiredAnalysis: req.body.RequiredAnalysis,
-       
-        // $and:[{date:{$gte:d1}},{date:{$lte:d2}}]
-      })
-     
+        // $and: [{ date: { $gte: d1 } }, { date: { $lte: d2 } }]
+      });
     } catch (error) {
       // return next(error);
-      console.log(error)
+      console.log(error);
     }
-     res.json(pre)
+    res.json(pre);
     res.status(200).send({ msg: "success", pre });
     console.log(pre);
-    
   },
 
   async addMain(req, res, next) {
@@ -47,15 +43,15 @@ const MainController = {
     //   noofSample: Joi.string().required(),
     //   sampleType: Joi.string().required(),
     //   date: Joi.date().required(),
-    //   RequiredAnalysis:Joi.string().required(),
-    //   count:  Joi.required(),
+    //   RequiredAnalysis: Joi.string().required(),
+    //   count: Joi.required(),
     //   excel: Joi.array
     // });
     // const { error } = productsSchema.validate(req.body);
     // if (error) {
     //   return next(error);
     // }
-    const { name, workOder, noofSample, requiredTest, sampleType, date,RequiredAnalysis,count ,excel} =
+    const { name, workOder, noofSample, requiredTest, sampleType, date, RequiredAnalysis, count, excel } =
       req.body;
 
     let product;
@@ -93,14 +89,13 @@ const MainController = {
     // if (error) {
     //   return next(error);
     // }
-    const { name, workOder, noofSample, requiredTest, sampleType, date ,RequiredAnalysis,count,excel} =
-
+    const { name, workOder, noofSample, requiredTest, sampleType, date, RequiredAnalysis, count, excel } =
       req.body;
- console.log(req.body,'reqbody')
+    console.log(req.body, 'reqbody');
     let product;
     try {
       product = await Main.findByIdAndUpdate(
-        { _id:req.params.id },
+        { _id: req.params.id },
         {
           name,
           workOder,
@@ -111,11 +106,11 @@ const MainController = {
           count,
           RequiredAnalysis,
           // excel
-        },{new: true}
+        }, { new: true }
       );
-console.log(product,'product')
-console.log(req.params.id,'id')
-      
+      console.log(product, 'product');
+      console.log(req.params.id, 'id');
+
     } catch (error) {
       return next(error);
     }
@@ -135,4 +130,5 @@ console.log(req.params.id,'id')
     res.json(product);
   },
 };
-export default MainController;
+
+module.exports = MainController;

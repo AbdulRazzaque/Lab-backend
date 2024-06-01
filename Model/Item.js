@@ -1,14 +1,12 @@
-import mongoose, { model } from "mongoose";
-
-const Schema= mongoose.Schema;
-
-const ItemSchema= new Schema({
-  
-    email:{type:String,require:true},
-    password:{type:String,require:true},
-    reppassword:{type:String,require:true}
-
-},{timestamps:true})
+const mongoose = require("mongoose");
 
 
-export default mongoose.model('Item',ItemSchema,'Items')
+const Schema = mongoose.Schema;
+
+const ItemSchema = new Schema({
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    reppassword: { type: String}
+}, { timestamps: true });
+
+module.exports = mongoose.model('Item', ItemSchema, 'Items');

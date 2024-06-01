@@ -1,6 +1,7 @@
-import Joi from "joi";
-import Projectbrucella from "../Model/Projectbrucella";
+const Joi = require("joi");
+const Projectbrucella = require("../Model/Projectbrucella");
 const date = require("date-and-time");
+
 const ProjectbrucellaController = {
   async itemsProjectbrucella(req, res, next) {
     let item;
@@ -15,7 +16,7 @@ const ProjectbrucellaController = {
     res.json(item);
   },
 
-  async getPrevProjectbrucella(req, res,next) {
+  async getPrevProjectbrucella(req, res, next) {
     let pre; 
    
     let d1 = date.parse(req.body.from, "YYYY/MM/DD");
@@ -128,4 +129,5 @@ const ProjectbrucellaController = {
     res.json(product);
   },
 };
-export default ProjectbrucellaController;
+
+module.exports = ProjectbrucellaController;

@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
+
 const labSchema = new Schema(
   {
     labSelection: { type: String, require: true },
@@ -8,4 +9,4 @@ const labSchema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Lab", labSchema, "labs");
+module.exports = mongoose.model("Lab", labSchema, "labs");
