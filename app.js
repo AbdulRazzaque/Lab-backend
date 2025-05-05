@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3005
 // const PORT = 3009;
 
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://localhost:27017/workshiLog', (error) => {
+mongoose.connect('mongodb://0.0.0.0:27017/workshiLog', (error) => {
 
   // mongoose.connect('mongodb://admin:admin@ac-endetpj-shard-00-00.5rzqf4o.mongodb.net:27017,ac-endetpj-shard-00-01.5rzqf4o.mongodb.net:27017,ac-endetpj-shard-00-02.5rzqf4o.mongodb.net:27017/?ssl=true&replicaSet=atlas-5zbco1-shard-0&authSource=admin&retryWrites=true&w=majority',(error)=>{
   if (error) {
